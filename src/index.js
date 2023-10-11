@@ -1,5 +1,6 @@
 // 1. Import required modules and configurations
 import dotenv from "dotenv";
+import cors from "cors";
 import express from "express";
 import mysql from "mysql2";
 import passport from "passport";
@@ -12,6 +13,12 @@ dotenv.config();
 
 // 2. Initialize Express app
 const app = express();
+app.use(
+  cors({
+    origin: true,
+  })
+);
+
 const PORT = process.env.SERVER_PORT || 3000;
 
 // 3. Configure Passport
