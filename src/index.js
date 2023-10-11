@@ -19,7 +19,7 @@ app.use(
   })
 );
 
-const PORT = process.env.SERVER_PORT || 3000;
+const PORT = process.env.SERVER_PORT || process.env.PORT || 3000;
 
 // 3. Configure Passport
 passport.serializeUser((user, done) => {
