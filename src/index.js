@@ -176,7 +176,7 @@ app.get("/logout", (req, res) => {
       console.log("Error: Failed to destroy the session during logout.", err);
     }
     res.redirect(
-      "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8085"
+      "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://https://expressquizzbackend-production.up.railway.app"
     );
   });
 });
