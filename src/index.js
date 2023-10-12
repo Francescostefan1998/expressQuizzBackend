@@ -69,13 +69,13 @@ passport.use(
 
             connection.query(
               insertQuery,
-              [name, surname, email, toUpperCase(locale)],
+              [name, surname, email, locale.toUpperCase()],
               (error, results) => {
                 if (error) {
                   return done(error);
                 }
 
-                user = { id: results.insertId, name, surname, email }; // New user object
+                user = { id: results.insertId, name, surname, email, locale }; // New user object
                 return done(null, user);
               }
             );
