@@ -69,7 +69,7 @@ passport.use(
 
             connection.query(
               insertQuery,
-              [name, surname, email, locale],
+              [name, surname, email, toUpperCase(locale)],
               (error, results) => {
                 if (error) {
                   return done(error);
@@ -146,7 +146,7 @@ app.get(
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
     if (req.user) {
-      const { id, name, surname, email } = req.user;
+      const { id, name, surname, email, locale } = req.user;
 
       // Create JWT
       const secretKey = "unaStringaMoltoMoltoLungaCheEquivaleAlmenoA256Bit";
@@ -158,6 +158,7 @@ app.get(
           name,
           surname,
           email,
+          locale,
           encryptedPassword: "...", // You might not want to send this!
         },
         token,
