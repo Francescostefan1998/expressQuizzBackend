@@ -13,6 +13,7 @@ dotenv.config();
 
 // 2. Initialize Express app
 const app = express();
+app.use("/auth/google", cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*"); // Consentire tutte le origini (assicurati di limitarlo per la produzione)
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
