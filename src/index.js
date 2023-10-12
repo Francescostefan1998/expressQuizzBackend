@@ -43,7 +43,12 @@ passport.use(
       console.log(profile);
 
       // Extract necessary data
-      const { given_name: name, family_name: surname, email } = profile._json;
+      const {
+        given_name: name,
+        family_name: surname,
+        email,
+        locale,
+      } = profile._json;
 
       // Check if user exists in the database
       connection.query(
@@ -60,11 +65,11 @@ passport.use(
             // If user doesn't exist, create the user in the database
             const insertQuery = `
             INSERT INTO users (name, surname, email, nationality) 
-            VALUES (?, ?, ?, 'Unknown')`; // Defaulting nationality to 'Unknown' for now
+            VALUES (?, ?, ?, ?)`; // Defaulting nationality to 'Unknown' for now
 
             connection.query(
               insertQuery,
-              [name, surname, email],
+              [name, surname, email, locale],
               (error, results) => {
                 if (error) {
                   return done(error);
