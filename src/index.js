@@ -147,7 +147,7 @@ app.get(
       const secretKey = "unaStringaMoltoMoltoLungaCheEquivaleAlmenoA256Bit";
       const token = jwt.sign({ sub: email }, secretKey);
 
-      const response = {
+      const response = JSON.stringify({
         user: {
           id,
           name,
@@ -156,9 +156,10 @@ app.get(
           encryptedPassword: "...", // You might not want to send this!
         },
         token,
-      };
-
-      res.json(response);
+      });
+      const frontendURL =
+        "https://frontend-would-you-rather-7tt1h91to.vercel.app";
+      res.redirect(`${frontendURL}/google-auth-redirect?data=${response}`);
     } else {
       res.status(500).send("Authentication failed.");
     }
