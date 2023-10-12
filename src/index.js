@@ -157,7 +157,7 @@ app.get(
         },
         token,
       });
-      const frontendURL = "https://frontend-would-you-rather.vercel.app/";
+      const frontendURL = "https://frontend-would-you-rather.vercel.app";
       res.redirect(`${frontendURL}/google-auth-redirect?data=${response}`);
     } else {
       res.status(500).send("Authentication failed.");
