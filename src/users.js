@@ -1,5 +1,6 @@
 import app from "./index.js";
 import { Router } from "express";
+import pool from "./database.js";
 
 const userRouter = new Router();
 
