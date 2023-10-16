@@ -17,8 +17,12 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: process.env.GOOGLE_REDIRECT_URI,
     },
-    (token, profile, done) => {
+    (accessToken, refreshToken, profile, done) => {
       // Removed tokenSecret
+      if (!profile || !profile._json) {
+        return done(new Error("No profile returned from Google."));
+      }
+
       const {
         given_name: name,
         family_name: surname,
